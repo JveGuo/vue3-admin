@@ -65,6 +65,7 @@ import { UserOutlined, LockOutlined } from '@ant-design/icons-vue';
 import { userInfoStore } from '@/stores/user';
 import { PASSWORD } from '@/utils/constSet';
 import { message } from 'ant-design-vue';
+import router from '@/router';
 import 'ant-design-vue/es/message/style/css';
 
 const userInfo = userInfoStore();
@@ -76,7 +77,7 @@ interface FormState {
 
 const formState = reactive<FormState>({
   userName: 'admin',
-  password: ''
+  password: '123456'
 });
 
 const onFinish = (values: FormState) => {
@@ -87,6 +88,7 @@ const onFinish = (values: FormState) => {
   }
   message.success('登录成功');
   userInfo.setUserInfo(userName);
+  router.push('/');
 };
 </script>
 

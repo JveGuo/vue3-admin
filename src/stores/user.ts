@@ -1,6 +1,6 @@
 import { defineStore } from 'pinia';
 import { Permissions } from '@/utils/constSet';
-import { setStorage, getStorage } from '@/utils/storage';
+import { setStorage, getStorage, clearStorage } from '@/utils/storage';
 
 export const userInfoStore = defineStore({
   id: 'useInfo',
@@ -19,6 +19,11 @@ export const userInfoStore = defineStore({
         name === Permissions.admin ? Permissions.admin : Permissions.guest;
       setStorage('userPermission', userPermission);
       this.userInfo.permissions = userPermission;
+    },
+    clearUserInfo() {
+      this.userInfo.name = '';
+      this.userInfo.permissions = '';
+      clearStorage();
     }
   }
 });

@@ -1,19 +1,34 @@
 <!-- 基本布局 -->
 <template>
   <a-layout>
-    <a-layout-sider>Sider</a-layout-sider>
+    <SideBar :collapsed="collapsed" />
     <a-layout>
-      <a-layout-header>Header</a-layout-header>
+      <a-layout-header>
+        <Header :collapsed="collapsed" @toggle-collapsed="toggle" />
+      </a-layout-header>
       <a-layout-content>Content</a-layout-content>
     </a-layout>
   </a-layout>
 </template>
 
 <script setup lang="ts">
-import { reactive } from 'vue';
+import { ref } from 'vue';
+import Header from '../header/index.vue';
+import SideBar from '../sideBar/index.vue';
+
+const collapsed = ref<boolean>(false);
+
+const toggle = (val: boolean) => {
+  collapsed.value = val;
+};
 </script>
+
 <style scoped lang="less">
 .ant-layout {
   color: #fff;
+  .ant-layout-header {
+    padding: 0 24px;
+    background: #fff;
+  }
 }
 </style>
