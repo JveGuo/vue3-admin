@@ -23,7 +23,7 @@
             <div @click="router.push('/')">首 页</div>
           </a-menu-item>
           <a-menu-divider />
-          <a-menu-item key="0">
+          <a-menu-item key="1">
             <div class="logout" @click="logout">退 出</div>
           </a-menu-item>
         </a-menu>
