@@ -1,0 +1,72 @@
+<template>
+  <a-layout-sider
+    v-model:collapsed="props.collapsed"
+    :trigger="null"
+    collapsible
+  >
+    <div class="logo">LOGO</div>
+
+    <a-menu v-model:selectedKeys="selectedKeys" theme="dark" mode="inline">
+      <a-menu-item key="1">
+        <pie-chart-outlined />
+        <span>Option 1</span>
+      </a-menu-item>
+      <a-menu-item key="2">
+        <desktop-outlined />
+        <span>Option 2</span>
+      </a-menu-item>
+      <a-sub-menu key="sub1">
+        <template #title>
+          <span>
+            <user-outlined />
+            <span>User</span>
+          </span>
+        </template>
+        <a-menu-item key="3">Tom</a-menu-item>
+        <a-menu-item key="4">Bill</a-menu-item>
+        <a-menu-item key="5">Alex</a-menu-item>
+      </a-sub-menu>
+      <a-sub-menu key="sub2">
+        <template #title>
+          <span>
+            <team-outlined />
+            <span>Team</span>
+          </span>
+        </template>
+        <a-menu-item key="6">Team 1</a-menu-item>
+        <a-menu-item key="8">Team 2</a-menu-item>
+      </a-sub-menu>
+      <a-menu-item key="9">
+        <file-outlined />
+        <span>File</span>
+      </a-menu-item>
+    </a-menu>
+  </a-layout-sider>
+</template>
+
+<script setup lang="ts">
+import { defineProps, ref } from 'vue';
+import {
+  PieChartOutlined,
+  DesktopOutlined,
+  UserOutlined,
+  TeamOutlined,
+  FileOutlined
+} from '@ant-design/icons-vue';
+
+const props = defineProps({
+  collapsed: Boolean
+});
+
+const selectedKeys = ref<string[]>(['1']);
+</script>
+
+<style scoped lang="less">
+.logo {
+  height: 32px;
+  line-height: 32px;
+  text-align: center;
+  margin: 16px;
+  background: rgba(255, 255, 255, 0.3);
+}
+</style>
