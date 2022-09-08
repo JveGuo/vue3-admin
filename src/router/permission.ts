@@ -12,6 +12,14 @@ router.beforeEach((to, from, next) => {
       next('/');
     } else {
       next();
+      // const roles = userInfo.userInfo.permissions;
+      // console.log('to.meta.roles', to);
+
+      // if ((to.meta?.roles as string[]).includes(roles)) {
+      //   next();
+      // } else {
+      //   next('/404');
+      // }
     }
   } else {
     // 未登录，只允许进入login

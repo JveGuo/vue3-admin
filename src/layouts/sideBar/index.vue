@@ -53,12 +53,18 @@ import {
   TeamOutlined,
   FileOutlined
 } from '@ant-design/icons-vue';
+import { useRouter } from 'vue-router';
 
+// 接收父组件传值
 const props = defineProps({
   collapsed: Boolean
 });
 
 const selectedKeys = ref<string[]>(['1']);
+
+const router = useRouter();
+
+console.log('router', router.getRoutes());
 </script>
 
 <style scoped lang="less">

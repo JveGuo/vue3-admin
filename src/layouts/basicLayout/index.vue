@@ -6,13 +6,16 @@
       <a-layout-header>
         <Header :collapsed="collapsed" @toggle-collapsed="toggle" />
       </a-layout-header>
-      <a-layout-content>Content</a-layout-content>
+      <a-layout-content>
+        <RouterView />
+      </a-layout-content>
     </a-layout>
   </a-layout>
 </template>
 
 <script setup lang="ts">
 import { ref } from 'vue';
+import { RouterView } from 'vue-router';
 import Header from '../header/index.vue';
 import SideBar from '../sideBar/index.vue';
 
