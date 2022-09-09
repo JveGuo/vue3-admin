@@ -1,9 +1,9 @@
-import { createRouter, createWebHashHistory } from 'vue-router';
+import { createRouter, createWebHashHistory, RouteRecordRaw } from 'vue-router';
 
 import LayoutComponent from '@/layouts/basicLayout/index.vue';
 
 // 公开路由
-const publicRoutes = [
+export const publicRoutes: RouteRecordRaw[] = [
   {
     path: '/login',
     name: 'login',
@@ -22,11 +22,14 @@ const publicRoutes = [
 ];
 
 // 权限路由
-const permissionsRoutes = [
+export const asyncRoutes: RouteRecordRaw[] = [
   {
     path: '/home',
     name: 'home',
     redirect: '/home/index',
+    meta: {
+      title: '首页'
+    },
     component: LayoutComponent,
     children: [
       {
@@ -41,6 +44,7 @@ const permissionsRoutes = [
     name: 'permissions',
     redirect: '/permissions/index',
     meta: {
+      title: '权限菜单',
       roles: ['admin']
     },
     component: LayoutComponent,
@@ -56,7 +60,7 @@ const permissionsRoutes = [
 
 const router = createRouter({
   history: createWebHashHistory(),
-  routes: [...publicRoutes, ...permissionsRoutes]
+  routes: publicRoutes
 });
 
 export default router;

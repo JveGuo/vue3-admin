@@ -7,6 +7,15 @@
     <div class="logo">LOGO</div>
 
     <a-menu v-model:selectedKeys="selectedKeys" theme="dark" mode="inline">
+      <template v-for="menu in userInfo.routes" :key="menu.path">
+        <router-link :to="menu.path" v-if="menu.meta" class="menu-link">
+          <a-menu-item :key="menu.path">
+            <pie-chart-outlined />
+            {{ menu.name }}
+          </a-menu-item>
+        </router-link>
+      </template>
+
       <a-menu-item key="1">
         <pie-chart-outlined />
         <span>Option 1</span>
@@ -53,18 +62,19 @@ import {
   TeamOutlined,
   FileOutlined
 } from '@ant-design/icons-vue';
-import { useRouter } from 'vue-router';
+import { userInfoStore } from '@/stores/user';
+import { RouterLink } from 'vue-router';
 
 // 接收父组件传值
 const props = defineProps({
   collapsed: Boolean
 });
 
-const selectedKeys = ref<string[]>(['1']);
+const selectedKeys = ref<string[]>([]);
 
-const router = useRouter();
+const userInfo = userInfoStore();
 
-console.log('router', router.getRoutes());
+// console.log('userInfo', userInfo.routes[0]);
 </script>
 
 <style scoped lang="less">
@@ -74,5 +84,9 @@ console.log('router', router.getRoutes());
   text-align: center;
   margin: 16px;
   background: rgba(255, 255, 255, 0.3);
+}
+
+.menu-link {
+  display: block;
 }
 </style>

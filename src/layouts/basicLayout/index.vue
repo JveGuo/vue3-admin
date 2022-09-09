@@ -33,5 +33,9 @@ const toggle = (val: boolean) => {
     padding: 0 24px;
     background: #fff;
   }
+
+  .ant-layout-content {
+    color: #333;
+  }
 }
 </style>

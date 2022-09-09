@@ -14,7 +14,7 @@
         size="large"
         :style="{ backgroundColor: '#7265e6', verticalAlign: 'middle' }"
       >
-        {{ userInfo.userInfo.name }}
+        {{ userInfo.name }}
       </a-avatar>
 
       <template #overlay>

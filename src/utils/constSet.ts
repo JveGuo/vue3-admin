@@ -1,5 +1,5 @@
 // 用户权限
-export enum Permissions {
+export enum PermissionType {
   admin = 'admin',
   guest = 'guest'
 }
