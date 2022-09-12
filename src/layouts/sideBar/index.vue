@@ -6,64 +6,44 @@
   >
     <div class="logo">LOGO</div>
 
-    <a-menu v-model:selectedKeys="selectedKeys" theme="dark" mode="inline">
-      <template v-for="menu in userInfo.routes" :key="menu.path">
-        <router-link :to="menu.path" v-if="menu.meta" class="menu-link">
-          <a-menu-item :key="menu.path">
+    <a-menu
+      v-model:selectedKeys="selectedKeys"
+      v-model:openKeys="openKeys"
+      theme="dark"
+      mode="inline"
+    >
+      <template v-for="item in userInfo.menu" :key="item.path">
+        <a-sub-menu v-if="item.children && item.children.length > 0">
+          <template #icon>
+            <DesktopOutlined />
+          </template>
+          <template #title>{{ item.title }}</template>
+          <template v-for="subItem in item.children">
+            <router-link :to="subItem.path" class="menu-link">
+              <a-menu-item :key="subItem.path">
+                {{ subItem.title }}-{{ subItem.path }}
+              </a-menu-item>
+            </router-link>
+          </template>
+        </a-sub-menu>
+
+        <router-link v-else :to="item.path" class="menu-link">
+          <a-menu-item :key="item.path">
             <pie-chart-outlined />
-            {{ menu.name }}
+            {{ item.title }}-{{ item.path }}
           </a-menu-item>
         </router-link>
       </template>
-
-      <a-menu-item key="1">
-        <pie-chart-outlined />
-        <span>Option 1</span>
-      </a-menu-item>
-      <a-menu-item key="2">
-        <desktop-outlined />
-        <span>Option 2</span>
-      </a-menu-item>
-      <a-sub-menu key="sub1">
-        <template #title>
-          <span>
-            <user-outlined />
-            <span>User</span>
-          </span>
-        </template>
-        <a-menu-item key="3">Tom</a-menu-item>
-        <a-menu-item key="4">Bill</a-menu-item>
-        <a-menu-item key="5">Alex</a-menu-item>
-      </a-sub-menu>
-      <a-sub-menu key="sub2">
-        <template #title>
-          <span>
-            <team-outlined />
-            <span>Team</span>
-          </span>
-        </template>
-        <a-menu-item key="6">Team 1</a-menu-item>
-        <a-menu-item key="8">Team 2</a-menu-item>
-      </a-sub-menu>
-      <a-menu-item key="9">
-        <file-outlined />
-        <span>File</span>
-      </a-menu-item>
     </a-menu>
   </a-layout-sider>
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue';
-import {
-  PieChartOutlined,
-  DesktopOutlined,
-  UserOutlined,
-  TeamOutlined,
-  FileOutlined
-} from '@ant-design/icons-vue';
+import { ref, watch } from 'vue';
+import { PieChartOutlined, DesktopOutlined } from '@ant-design/icons-vue';
 import { userInfoStore } from '@/stores/user';
 import { RouterLink } from 'vue-router';
+import { useRouter } from 'vue-router';
 
 // 接收父组件传值
 const props = defineProps({
@@ -72,9 +52,12 @@ const props = defineProps({
 
 const selectedKeys = ref<string[]>([]);
 
+const openKeys = ref<string[]>([]);
+
 const userInfo = userInfoStore();
 
-// console.log('userInfo', userInfo.routes[0]);
+const router = useRouter();
+selectedKeys.value = [router.currentRoute.value.fullPath];
 </script>
 
 <style scoped lang="less">
