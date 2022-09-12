@@ -42,7 +42,7 @@ export const asyncRoutes: RouteRecordRaw[] = [
   {
     path: '/permissions',
     name: 'permissions',
-    redirect: '/permissions/index',
+    // redirect: '/permissions/index',
     meta: {
       title: '权限菜单',
       roles: ['admin']
@@ -52,7 +52,18 @@ export const asyncRoutes: RouteRecordRaw[] = [
       {
         path: '/permissions/index',
         name: 'permissionsIndex',
-        component: () => import('@/views/permissions/index.vue')
+        meta: {
+          title: '权限菜单-1'
+        },
+        redirect: '/permissions/index1',
+        component: () => import('@/views/permissions/index.vue'),
+        children: [
+          {
+            path: '/permissions/index1',
+            name: 'permissionsIndex1',
+            component: () => import('@/views/permissions/index.vue')
+          }
+        ]
       }
     ]
   }
