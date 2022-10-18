@@ -88,7 +88,7 @@ const onFinish = (values: FormState) => {
   }
   message.success('登录成功');
   userInfo.setUserInfo(userName);
-  router.push('/');
+  window.location.reload();
 };
 </script>
 

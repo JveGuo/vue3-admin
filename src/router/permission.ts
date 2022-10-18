@@ -10,6 +10,7 @@ const whiteList = ['/login'];
 
 router.beforeEach((to, from, next) => {
   const userInfo = userInfoStore();
+
   // 已登陆
   if (userInfo.name) {
     if (to.path === '/login') {
@@ -19,9 +20,11 @@ router.beforeEach((to, from, next) => {
       if (userInfo.dynamicRoutes.length > 0) {
         next();
       } else {
-        userInfo.generateRoutes(userInfo.permission as PermissionType);
+        userInfo.generateRoutes(userInfo.permission as PermissionType, () =>
+          next({ ...to, replace: true })
+        );
         // replace: true 只是一个设置信息，告诉VUE本次操作后，不能通过浏览器后退按钮，返回前一个路由。
-        next({ ...to, replace: true });
+        // next({ ...to, replace: true });
       }
     }
   } else {

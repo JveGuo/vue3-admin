@@ -12,7 +12,7 @@ interface UserInfo {
   dynamicRoutes: RouteRecordRaw[]; // 动态路由
 }
 
-interface MenuRender {
+export interface MenuRender {
   title: string;
   path: string;
   children?: MenuRender[];
@@ -76,7 +76,7 @@ export const userInfoStore = defineStore({
       clearStorage();
     },
     // 构建路由
-    generateRoutes(roles: PermissionType) {
+    generateRoutes(roles: PermissionType, cb?: any) {
       // accessedRoutes: 筛选出的动态路由
       const accessedRoutes = filterAsyncRoutes(asyncRoutes, roles);
       this.routes = publicRoutes.concat(accessedRoutes);
@@ -85,6 +85,7 @@ export const userInfoStore = defineStore({
       accessedRoutes.forEach((route) => {
         router.addRoute(route);
       });
+      cb?.();
     }
   }
 });

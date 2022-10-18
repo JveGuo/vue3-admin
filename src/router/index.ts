@@ -12,7 +12,9 @@ export const publicRoutes: RouteRecordRaw[] = [
   {
     path: '/',
     name: 'basicLayout',
-    component: LayoutComponent
+    redirect: '/home',
+    component: LayoutComponent,
+    children: []
   },
   {
     path: '/404',
