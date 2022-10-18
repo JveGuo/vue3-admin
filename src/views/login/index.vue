@@ -65,7 +65,6 @@ import { UserOutlined, LockOutlined } from '@ant-design/icons-vue';
 import { userInfoStore } from '@/stores/user';
 import { PASSWORD } from '@/utils/constSet';
 import { message } from 'ant-design-vue';
-import router from '@/router';
 import 'ant-design-vue/es/message/style/css';
 
 const userInfo = userInfoStore();
