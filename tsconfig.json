@@ -6,10 +6,8 @@
     "paths": {
       "@/*": ["./src/*"]
     },
-    "types": ["element-plus/global"],
     "preserveValueImports": false
   },
-
   "references": [
     {
       "path": "./tsconfig.config.json"

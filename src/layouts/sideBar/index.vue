@@ -94,6 +94,7 @@ const getParentKey = (
   });
 };
 
+// 点击菜单 item 跳转页面
 const handelClickMenuItem = ({ key }: { key: string }) => {
   if (key !== router.currentRoute.value.path) {
     router.push(key);

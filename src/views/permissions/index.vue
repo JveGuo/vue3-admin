@@ -1,5 +1,8 @@
 <template>
-  <div>权限页面</div>
+  <div>
+    <a-typography-title :level="3">权限页面</a-typography-title>
+    <a-typography-text type="warning">没有权限看不到该页面</a-typography-text>
+  </div>
 </template>
 
 <script setup lang="ts">

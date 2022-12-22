@@ -6,7 +6,7 @@
       <a-layout-header>
         <Header :collapsed="collapsed" @toggle-collapsed="toggle" />
       </a-layout-header>
-      <a-layout-content>
+      <a-layout-content class="page-container">
         <RouterView />
       </a-layout-content>
     </a-layout>
@@ -36,6 +36,12 @@ const toggle = (val: boolean) => {
 
   .ant-layout-content {
     color: #333;
+
+    &.page-container {
+      padding: 24px;
+      overflow: hidden;
+      overflow-y: auto;
+    }
   }
 }
 </style>
