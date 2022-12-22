@@ -21,21 +21,27 @@
             <DesktopOutlined />
           </template>
           <template #title>{{ item.title }}</template>
-          <template v-for="subItem in item.children">
-            <router-link :to="subItem.path" class="menu-link">
+          <template v-for="subItem in item.children" :key="subItem.path">
+            <template v-if="subItem.children">
               <a-menu-item :key="subItem.path">
-                {{ subItem.title }}
+                <router-link :to="subItem.path" class="menu-link">
+                  {{ subItem.title }}
+                </router-link>
               </a-menu-item>
-            </router-link>
+            </template>
           </template>
         </a-sub-menu>
 
-        <router-link v-else :to="item.path" class="menu-link">
+        <template v-else>
           <a-menu-item :key="item.path">
-            <pie-chart-outlined />
-            {{ item.title }}
+            <template #icon>
+              <PieChartOutlined />
+            </template>
+            <router-link :to="item.path" class="menu-link">
+              {{ item.title }}
+            </router-link>
           </a-menu-item>
-        </router-link>
+        </template>
       </template>
     </a-menu>
   </a-layout-sider>
