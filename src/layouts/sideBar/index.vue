@@ -11,6 +11,7 @@
       v-model:openKeys="openKeys"
       theme="dark"
       mode="inline"
+      @click="handelClickMenuItem"
     >
       <template v-for="item in menu" :key="item.path">
         <a-sub-menu
@@ -24,9 +25,9 @@
           <template v-for="subItem in item.children" :key="subItem.path">
             <template v-if="subItem.children">
               <a-menu-item :key="subItem.path">
-                <router-link :to="subItem.path" class="menu-link">
-                  {{ subItem.title }}
-                </router-link>
+                <!-- <router-link :to="subItem.path" class="menu-link"> -->
+                {{ subItem.title }}
+                <!-- </router-link> -->
               </a-menu-item>
             </template>
           </template>
@@ -37,9 +38,9 @@
             <template #icon>
               <PieChartOutlined />
             </template>
-            <router-link :to="item.path" class="menu-link">
-              {{ item.title }}
-            </router-link>
+            <!-- <router-link :to="item.path" class="menu-link"> -->
+            {{ item.title }}
+            <!-- </router-link> -->
           </a-menu-item>
         </template>
       </template>
@@ -51,7 +52,6 @@
 import { ref, onBeforeMount } from 'vue';
 import { PieChartOutlined, DesktopOutlined } from '@ant-design/icons-vue';
 import { userInfoStore, MenuRender } from '@/stores/user';
-import { RouterLink } from 'vue-router';
 import { useRouter } from 'vue-router';
 
 // 接收父组件传值
@@ -72,7 +72,6 @@ selectedKeys.value = [currentPath];
 
 onBeforeMount(() => {
   const menu = userInfo.menu;
-  const router = useRouter();
   const currentPath = router.currentRoute.value.fullPath;
   selectedKeys.value = [currentPath];
   getParentKey(menu, currentPath);
@@ -93,6 +92,12 @@ const getParentKey = (
       return;
     }
   });
+};
+
+const handelClickMenuItem = ({ key }: { key: string }) => {
+  if (key !== router.currentRoute.value.path) {
+    router.push(key);
+  }
 };
 </script>
 
