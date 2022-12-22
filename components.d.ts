@@ -26,6 +26,7 @@ declare module '@vue/runtime-core' {
     ARow: typeof import('ant-design-vue/es')['Row']
     ASpace: typeof import('ant-design-vue/es')['Space']
     ASubMenu: typeof import('ant-design-vue/es')['SubMenu']
+    ATable: typeof import('ant-design-vue/es')['Table']
     ATypographyParagraph: typeof import('ant-design-vue/es')['TypographyParagraph']
     ATypographyText: typeof import('ant-design-vue/es')['TypographyText']
     ATypographyTitle: typeof import('ant-design-vue/es')['TypographyTitle']

@@ -68,6 +68,22 @@ export const asyncRoutes: RouteRecordRaw[] = [
         ]
       }
     ]
+  },
+  {
+    path: '/table',
+    name: 'table',
+    redirect: '/table/index',
+    meta: {
+      title: 'Table'
+    },
+    component: LayoutComponent,
+    children: [
+      {
+        path: '/table/index',
+        name: 'tableIndex',
+        component: () => import('@/views/table/index.vue')
+      }
+    ]
   }
 ];
 
